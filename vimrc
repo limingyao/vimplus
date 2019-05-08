@@ -27,6 +27,15 @@ Plugin 'kien/rainbow_parentheses.vim'
 """ LeaderF plugin, search files
 Plugin 'Yggdroot/LeaderF'
 
+""" easymotion plugin,
+Plugin 'easymotion/vim-easymotion'
+
+""" plugin
+Plugin 'bronson/vim-trailing-whitespace'
+
+""" plugin
+Plugin 'Yggdroot/indentLine'
+
 
 """ All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -36,6 +45,19 @@ filetype plugin indent on    " required
 
 syntax on
 set number
+
+set cursorline
+set cursorcolumn
+
+let mapleader=','
+let maplocalleader = '_'
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
+
+" set for color scheme
+colorscheme  molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
 
 " set encoding
 set encoding=utf-8
@@ -83,3 +105,5 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " set for LeaderF
 let g:Lf_ShortcutF = '<C-P>'
+
+
