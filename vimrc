@@ -22,6 +22,9 @@ Plugin 'airblade/vim-gitgutter'
 """ indentLine plugin
 Plugin 'Yggdroot/indentLine'
 
+""" vimplus plugin
+Plugin 'chxuan/vimplus-startify'
+
 """ airline plugin
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
@@ -41,6 +44,9 @@ Plugin 'bronson/vim-trailing-whitespace'
 
 """ comment plugin
 Plugin 'scrooloose/nerdcommenter'
+
+""" search plugin
+Plugin 'haya14busa/incsearch.vim'
 
 """ All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -64,9 +70,6 @@ set tabstop=4
 set softtabstop=4
 set smarttab
 %retab!
-
-set incsearch
-set hlsearch
 
 let mapleader=','
 let maplocalleader = '_'
@@ -151,3 +154,16 @@ let g:NERDSpaceDelims=1
 "<leader>cu        取消注释
 "<leader>c<space>  注释/取消注释, 智能判断
 "<leader>cy        先复制, 再注解, p可以进行黏贴
+
+" set for incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
