@@ -16,7 +16,13 @@ call vundle#begin()
 """ let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-""" airline plugin, colorful theme
+""" git plugin
+Plugin 'airblade/vim-gitgutter'
+
+""" indentLine plugin
+Plugin 'Yggdroot/indentLine'
+
+""" airline plugin
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -24,35 +30,57 @@ Plugin 'vim-airline/vim-airline-themes'
 """ parentheses plugin
 Plugin 'kien/rainbow_parentheses.vim'
 
-""" LeaderF plugin, search files
+""" LeaderF plugin
 Plugin 'Yggdroot/LeaderF'
 
-""" easymotion plugin,
+""" easymotion plugin
 Plugin 'easymotion/vim-easymotion'
 
-""" plugin
+""" trailing whitespace plugin
 Plugin 'bronson/vim-trailing-whitespace'
 
-""" plugin
-Plugin 'Yggdroot/indentLine'
-
+""" comment plugin
+Plugin 'scrooloose/nerdcommenter'
 
 """ All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-""" Put your non-Plugin stuff after this line
-
+"""""""""""""""""""""""""""""""""""""""""""""""""
+""" Put your non-Plugin stuff after this line """
+"""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 set number
 
-set cursorline
-set cursorcolumn
+set cursorline    " 光标所在行阴影
+set cursorcolumn  " 光标所在列阴影
+
+set autoindent
+set smartindent
+
+set shiftwidth=4
+set expandtab
+set tabstop=4
+set softtabstop=4
+set smarttab
+%retab!
+
+set incsearch
+set hlsearch
 
 let mapleader=','
 let maplocalleader = '_'
+
 nnoremap [b :bp<CR>
 nnoremap ]b :bn<CR>
+
+" 粘贴模式
+set pastetoggle=<F4>
+
+" 回到上次编辑位置
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " set for color scheme
 colorscheme  molokai
@@ -88,7 +116,6 @@ let g:rbpt_colorpairs = [
         \ ['darkmagenta', 'DarkOrchid3'],
         \ ['brown',       'firebrick3'],
         \ ['gray',        'RoyalBlue3'],
-        \ ['black',       'SeaGreen3'],
         \ ['darkmagenta', 'DarkOrchid3'],
         \ ['Darkblue',    'firebrick3'],
         \ ['darkgreen',   'RoyalBlue3'],
@@ -96,8 +123,8 @@ let g:rbpt_colorpairs = [
         \ ['darkcyan',    'SeaGreen3'],
         \ ['red',         'firebrick3'],
         \ ]
-let g:rbpt_max=16
-let g:rbpt_loadcmd_toggle=0
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
@@ -106,4 +133,21 @@ au Syntax * RainbowParenthesesLoadBraces
 " set for LeaderF
 let g:Lf_ShortcutF = '<C-P>'
 
+" set for easymotion
+let g:EasyMotion_smartcase = 1
+nmap s <Plug>(easymotion-overwin-f)
+nmap s <Plug>(easymotion-overwin-f2)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
 
+" set for trailing whitespace
+map <leader><space> :FixWhitespace<cr>
+
+" set for nerdcommenter
+let g:NERDSpaceDelims=1
+"<leader>cc        注释
+"<leader>cu        取消注释
+"<leader>c<space>  注释/取消注释, 智能判断
+"<leader>cy        先复制, 再注解, p可以进行黏贴
