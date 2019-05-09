@@ -77,6 +77,8 @@ let maplocalleader = '_'
 nnoremap [b :bp<CR>
 nnoremap ]b :bn<CR>
 
+set backspace=2
+
 " 粘贴模式
 set pastetoggle=<F4>
 
